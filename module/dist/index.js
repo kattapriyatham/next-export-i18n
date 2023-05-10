@@ -69,15 +69,21 @@ function useSelectedLanguage() {
     i18nObj = i18n();
     const defaultLang = i18nObj.defaultLang;
     const translations = i18nObj.translations;
+    const locales = i18nObj.locales;
     const router$1 = router.useRouter();
     const [lang, setLang] = React.useState(defaultLang);
     // set the language if the query parameter changes
     React.useEffect(() => {
-        if (router$1.query.lang && router$1.query.lang !== lang && translations && translations[router$1.query.lang]) {
-            let lang = router$1.query.lang;
+        const routerLanguage = router$1.asPath.split("/")[1];
+        if (locales.includes(routerLanguage) &&
+            routerLanguage &&
+            routerLanguage !== lang &&
+            translations &&
+            translations[routerLanguage]) {
+            let lang = routerLanguage;
             setLang(lang);
         }
-    }, [lang, router$1.query.lang]);
+    }, [lang, router$1.asPath]);
     return { lang, setLang };
     // return [lang, setLang] as const;
 }
@@ -146,13 +152,17 @@ function useLanguageSwitcherIsActive(currentLang) {
  * In case there is no entry for this key, it returns the key.
  * @returns t(key: string): any function
  */
-const useTranslation = () => {
+const useTranslation = (namespace) => {
     router.useRouter();
     let i18nObj;
     i18nObj = i18n();
     const translations = i18nObj.translations;
     i18nObj.defaultLang;
     const { lang } = useSelectedLanguage();
+    const nameSpaceTranslations = namespace
+        ? // @ts-ignore
+            translations[lang][namespace]
+        : translations[lang];
     // const [lang] = useSelectedLanguage();
     return {
         /**
@@ -164,7 +174,9 @@ const useTranslation = () => {
          * @returns the value stored for this key, could be a string, a number, an array or an object
          */
         t: (key, view) => {
-            let value = key.split('.').reduce((previous, current) => (previous && previous[current]) || null, translations[lang]);
+            let value = key
+                .split(".")
+                .reduce((previous, current) => (previous && previous[current]) || null, nameSpaceTranslations);
             let translation = value || key;
             try {
                 return Mustache__default["default"].render(translation, view);

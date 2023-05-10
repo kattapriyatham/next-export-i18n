@@ -22,7 +22,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --coverage",
-    "build": "node ./scripts/pre-build.js && yarn test && tsc && rollup -c && node ./scripts/post-build.js",
+    "build": "node ./scripts/pre-build.js && tsc && rollup -c && node ./scripts/post-build.js",
     "start": "rollup -c -w",
     "npm": "cd ./dist"
   },

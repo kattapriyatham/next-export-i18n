@@ -13,6 +13,7 @@ const i18n = {
   },
   defaultLang: "de",
   useBrowserDefault: true,
+  locales: ["en", "de"],
 } as I18N;
 
 export { i18n };
