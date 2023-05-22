@@ -2,7 +2,7 @@
  * The entry files for the separated hooks
  */
 
-import { i18n as userland } from "./../../i18n/index";
+import { i18n as userland } from "../i18n/index";
 import { Dictionary, I18N } from "./types";
 
 /**

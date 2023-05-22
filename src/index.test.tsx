@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { i18n as userland } from "./../../i18n/index";
+import { i18n as userland } from "../i18n/index";
 import index from "./index";
 import { I18N } from "./types";
 const navigator = {

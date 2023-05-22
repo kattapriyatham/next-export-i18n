@@ -17,21 +17,21 @@ const options = {
 
 async function postBuild() {
   try {
-    console.log("post build: copy './../README.md' to './dist/README.md'");
-    fs.copyFile("./../README.md", "./dist/README.md", (err) => {
+    console.log("post build: copy '../README.md' to './dist/README.md'");
+    fs.copyFile("../README.md", "./dist/README.md", (err) => {
       if (err) throw err;
     });
     console.log(
-      "post build: copy './../next-export-i18n.png' to './dist/next-export-i18n.png'"
+      "post build: copy '../next-export-i18n.png' to './dist/next-export-i18n.png'"
     );
     fs.copyFile(
-      "./../next-export-i18n.png",
+      "../next-export-i18n.png",
       "./dist/next-export-i18n.png",
       (err) => {
         if (err) throw err;
       }
     );
-    console.log("post build: copy './../LICENSE' to './dist/LICENSE'");
+    console.log("post build: copy '../LICENSE' to './dist/LICENSE'");
     fs.copyFile("./LICENSE", "./dist/LICENSE", (err) => {
       if (err) throw err;
     });

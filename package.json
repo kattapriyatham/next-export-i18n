@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "mustache": "^4.2.0",
-    "next": "^12.1.5",
+    "next": ">=12.1.0",
+    "next-export-i18n": "github:kattapriyatham/next-export-i18n#npm-installable",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
